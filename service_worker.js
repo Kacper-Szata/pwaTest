@@ -1,46 +1,26 @@
-const cacheName = 'threeMuses-pwa';
-const filesToCache = [
+var cacheName = 'threeMuses-pwa';
+var filesToCache = [
   '/',
   '/index.html',
   '/css/push.css',
   '/js/script.js',
-];
 
-self.addEventListener('install', async e => {
-  const cache = await caches.open(cacheName);
-  await cache.addAll(filesToCache);
-  return self.skipWaiting();
+ ];
+
+/* Cache contents when Offline See Cache */
+self.addEventListener('install', function(e) {
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      return cache.addAll(filesToCache);
+    })
+  );
 });
 
-self.addEventListener('activate', e => {
-  self.clients.claim();
+/* Serve cached content when offline, examine Cache Storage */
+self.addEventListener('fetch', function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      return response || fetch(e.request);
+    })
+  );
 });
-
-self.addEventListener('fetch', async e => {
-  const req = e.request;
-  const url = new URL(req.url);
-
-  if (url.origin === location.origin) {
-    e.respondWith(cacheFirst(req));
-  } else {
-    e.respondWith(networkAndCache(req));
-  }
-});
-
-async function cacheFirst(req) {
-  const cache = await caches.open(cacheName);
-  const cached = await cache.match(req.url);
-  return cached || fetch(req);
-}
-
-async function networkAndCache(req) {
-  const cache = await caches.open(cacheName);
-  try {
-    const fresh = await fetch(req);
-    await cache.put(req, fresh.clone());
-    return fresh;
-  } catch (e) {
-    const cached = await cache.match(req);
-    return cached;
-  }
-}
