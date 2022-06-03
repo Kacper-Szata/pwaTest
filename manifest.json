@@ -1,6 +1,12 @@
 {
     "name": "Three Muses Progressive Web Application",
     "short_name": "Three Muses PWA",
+    "theme_color": "#ffffff",
+    "background_color": "#000000",
+    "display": "minimal-ui",
+    "orientation": "landscape",
+    "scope": "/",
+    "start_url": "/index.html",
 
     "icons": [{
         "src": "img/icons/128_128.png",
@@ -37,12 +43,5 @@
         "sizes": "196x196",
         "type": "image/png",
         "purpose": "any maskable"
-    }],
-
-    "theme_color": "#ffffff",
-    "background_color": "#000000",
-    "display": "minimal-ui",
-    "orientation": "landscape",
-    "scope": "/",
-    "start_url": "index.html"
+    }]
 }
