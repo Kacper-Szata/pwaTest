@@ -9,7 +9,6 @@ var filesToCache = [
   '/assets/Art/Template_work/desert.json',
   '/assets/Art/Template_work/map 1.json',
   '/assets/Art/Template_work/map_1.json',
-  'https://cdn.jsdelivr.net/gh/photonstorm/phaser@3.10.1/dist/phaser.min.js'
 ];
 
 self.addEventListener('install', async e => {
