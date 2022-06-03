@@ -3,9 +3,13 @@ var filesToCache = [
   '/',
   '/index.html',
   '/css/push.css',
-  '/js/script.js',
-
- ];
+  '/js/scenes/Home.js',
+  '/js/declares.js',
+  '/js/game.js',
+  '/assets/Art\Template_work/desert.json',
+  '/assets/Art\Template_work/map 1.json',
+  '/assets/Art\Template_work/map_1.json'
+];
 
 /* Cache contents when Offline See Cache */
 self.addEventListener('install', function(e) {
